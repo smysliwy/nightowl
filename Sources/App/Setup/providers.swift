@@ -55,8 +55,8 @@ func setUpProviders(
 
     // MARK: Misc
 
-    try services.register(JWTKeychainProvider<AppUser>(configFactory: JWTKeychainConfig.current))
+  
     try services.register(NMetaProvider(config: .current))
-    try services.register(ResetProvider<AppUser>(configFactory: ResetConfig.current))
+    
     try services.register(BugsnagProvider(config: .current(environment)))
 }

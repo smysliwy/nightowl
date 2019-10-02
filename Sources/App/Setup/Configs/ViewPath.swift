@@ -1,12 +1,7 @@
 enum ViewPath {
     private static let prefix = "App"
 
-    enum Reset {
-        private static let reset = prefix + "/Reset"
-        static let form = reset + "/Password/reset-password-form"
-        static let success = reset + "/Password/reset-password-success"
-        static let resetPasswordEmail = reset + "/request-reset-password-email"
-    }
+    
 
     enum AdminPanel {
         private static let adminPanel = prefix + "/AdminPanel"

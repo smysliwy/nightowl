@@ -63,23 +63,7 @@ extension CORSMiddleware.Configuration {
     }
 }
 
-extension JWTKeychainConfig where U == AppUser {
-    static func current(container: Container) -> JWTKeychainConfig<AppUser> {
-        return JWTKeychainConfig(
-            accessTokenSigner: ExpireableJWTSigner(
-                expirationPeriod: 1.hoursInSecs,
-                signer: .hs256(
-                    key: env(EnvironmentKey.JWTKeychain.accessTokenSignerKey, "secret-access"))
-                ),
-            refreshTokenSigner: ExpireableJWTSigner(
-                expirationPeriod: 365.daysInSecs,
-                signer: .hs256(
-                    key: env(EnvironmentKey.JWTKeychain.refreshTokenSignerKey, "secret-refresh"))
-                ),
-            endpoints: .apiPrefixed
-        )
-    }
-}
+
 
 extension MySQLDatabaseConfig {
     static var current: MySQLDatabaseConfig {
@@ -90,7 +74,7 @@ extension MySQLDatabaseConfig {
             return MySQLDatabaseConfig(
                 hostname: env(EnvironmentKey.MySQL.hostname, "127.0.0.1"),
                 username: env(EnvironmentKey.MySQL.username, "root"),
-                password: env(EnvironmentKey.MySQL.password, ""),
+                password: env(EnvironmentKey.MySQL.password, "Mrkitty6"),
                 database: env(
                     EnvironmentKey.MySQL.database,
                     ProjectConfig.current.name.lowercased()
@@ -206,40 +190,6 @@ extension RedisClientConfig {
     }
 }
 
-extension ResetConfig where U == AppUser {
-    static func current(container: Container) -> ResetConfig<AppUser> {
-        return ResetConfig(
-            name: ProjectConfig.current.name,
-            baseURL: ProjectConfig.current.url,
-            endpoints: .apiPrefixed,
-            signer: .hs256(key: env(EnvironmentKey.Reset.signerKey, "secret-reset-appuser")
-                .convertToData()),
-            responses: .current
-        )
-    }
-}
 
-extension ResetResponses {
-    static var current: ResetResponses {
-        return .init(
-            resetPasswordRequestForm: { req in
-                try HTTPResponse(status: .notFound).encode(for: req)
-            },
-            resetPasswordUserNotified: { req in
-                try HTTPResponse(status: .noContent).encode(for: req)
-            },
-            resetPasswordForm: { req, user in
-                try req
-                    .make(LeafRenderer.self)
-                    .render(ViewPath.Reset.form)
-                    .encode(for: req)
-            },
-            resetPasswordSuccess: { req, user in
-                try req
-                    .make(LeafRenderer.self)
-                    .render(ViewPath.Reset.success)
-                    .encode(for: req)
-            }
-        )
-    }
-}
+
+

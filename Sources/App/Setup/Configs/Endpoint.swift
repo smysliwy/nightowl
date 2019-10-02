@@ -20,12 +20,7 @@ extension Endpoint.API {
         static let token = users + "/token"
         static let update = users + "/me"
 
-        enum ResetPassword {
-            private static let resetPassword = users + "/reset-password"
-            static let request = resetPassword + "/request"
-            static let renderReset = resetPassword
-            static let reset = resetPassword
-        }
+        
     }
 }
 
@@ -52,12 +47,4 @@ extension JWTKeychainEndpoints {
 
 // MARK: Reset
 
-extension ResetEndpoints {
-    static var apiPrefixed: ResetEndpoints {
-        return .init(
-            resetPasswordRequest: Endpoint.API.Users.ResetPassword.request,
-            renderResetPassword: Endpoint.API.Users.ResetPassword.renderReset,
-            resetPassword: Endpoint.API.Users.ResetPassword.reset
-        )
-    }
-}
+

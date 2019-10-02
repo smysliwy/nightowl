@@ -1,5 +1,6 @@
 import FluentMySQL
 import Vapor
+import Foundation
 
 final class AppUser: Codable {
     var id: Int?
@@ -23,7 +24,7 @@ final class AppUser: Codable {
         self.id = id
         self.email = email
         self.name = name
-        self.password = try AppUser.hashPassword(password)
+        self.password = "" //try AppUser.hashPassword(password)
         self.passwordChangeCount = passwordChangeCount
     }
 }

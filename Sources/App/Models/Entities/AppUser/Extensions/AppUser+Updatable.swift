@@ -23,7 +23,7 @@ extension AppUser: Updatable {
         }
 
         if let password = updated.password {
-            self.password = try AppUser.hashPassword(password)
+            self.password = ""//try AppUser.hashPassword(password)
             self.passwordChangeCount += 1
         }
 

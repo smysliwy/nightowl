@@ -82,15 +82,5 @@ func configure(
     try leafTags(config: &leafTagConfig)
     services.register(leafTagConfig)
 
-    // MARK: Services
-
-    #warning ("TODO: Remember to replace 'nodestemplate' with the name of the app.")
-    let driver = try S3Driver(
-        bucket: Sugar.env(EnvironmentKey.Storage.bucket, ""),
-        accessKey: Sugar.env(EnvironmentKey.Storage.accessKey, ""),
-        secretKey: Sugar.env(EnvironmentKey.Storage.secretKey, ""),
-        pathTemplate: "/nodestemplate/#mimeFolder/#uuid.#fileExtension"
-    )
-    services.register(driver, as: NetworkDriver.self)
-    Storage.cdnBaseURL = Sugar.env(EnvironmentKey.Storage.cdnPath, "http://127.0.0.1:8080")
+   
 }

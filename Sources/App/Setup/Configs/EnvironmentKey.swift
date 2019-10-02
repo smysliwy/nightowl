@@ -5,11 +5,11 @@ enum EnvironmentKey {
     }
 
     enum MySQL {
-        static let url = "DATABASE_URL"
-        static let hostname = "DATABASE_HOSTNAME"
-        static let username = "DATABASE_USER"
-        static let password = "DATABASE_PASSWORD"
-        static let database = "DATABASE_DB"
+        static let url = "127.0.0.1"
+        static let hostname = "localhost"
+        static let username = "root"
+        static let password = "Mrkitty6"
+        static let database = "xoc.cable.db"
     }
 
     enum Redis {
@@ -49,10 +49,5 @@ enum EnvironmentKey {
         static let key = "BUGSNAG_API_KEY"
     }
 
-    enum Storage {
-        static let accessKey = "AWS_ACCESS_KEY"
-        static let bucket = "AWS_S3_BUCKET"
-        static let secretKey = "AWS_SECRET_KEY"
-        static let cdnPath = "CDN_BASE_URL"
-    }
+
 }
